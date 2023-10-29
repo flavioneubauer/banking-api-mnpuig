@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.builderprime.banking.customer.model.Customer;
 import com.builderprime.banking.transfer.model.Transfer;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,12 +33,13 @@ public class BankAccount {
     @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
+    @Column(nullable = false)
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer owner;
 
+    @Column(nullable = false)
     private BigDecimal balance;
-
-    @OneToMany
-    private List<Transfer> transfers;
 }

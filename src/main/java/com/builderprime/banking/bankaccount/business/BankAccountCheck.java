@@ -9,11 +9,13 @@ import com.builderprime.banking.bankaccount.model.repository.BankAccountReposito
 import com.builderprime.banking.exception.NotFoundException;
 
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class BankAccountCheck {
 
-    private BankAccountRepository bankAccountRepository;
+    private final BankAccountRepository bankAccountRepository;
     
     public BankAccount getBankAccount(@NonNull String bankAccountId){
         var bankAccount = bankAccountRepository.findById(UUID.fromString(bankAccountId));

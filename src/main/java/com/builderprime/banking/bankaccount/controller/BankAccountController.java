@@ -3,6 +3,7 @@ package com.builderprime.banking.bankaccount.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Tag(name = "BankAccount", description = "Bank Account basic operations")
-@RequestMapping(value = "/v1/bank-account",
+@RequestMapping(value = "/v1/bank-accounts",
         consumes = {APPLICATION_JSON_VALUE, ALL_VALUE},
         produces = {APPLICATION_JSON_VALUE})
 @RestController
@@ -51,8 +52,8 @@ public class BankAccountController {
     @ApiResponse(responseCode = "200", description = "Bank account data")
     @ApiResponse(responseCode = "422", description = "Validation error",
         content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
-    @GetMapping
-    public ResponseEntity<BankAccountBallanceDto> getBalance(@RequestParam("id") String bankAccountId){
+    @GetMapping(path = "{bankAccountId}")
+    public ResponseEntity<BankAccountBallanceDto> getBalance(@PathVariable String bankAccountId){
         return ResponseEntity.ok().body(bankAccountBallance.getBallance(bankAccountId));
     }
 }

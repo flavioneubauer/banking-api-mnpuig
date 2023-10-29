@@ -1,6 +1,7 @@
 package com.builderprime.banking.transfer.business;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,8 +48,11 @@ public class BankAccountTransfer {
         transferRepository.save(
                 Transfer.builder()
                         .amount(bankAccountTransferDto.getAmount())
+                        .timestamp(LocalDateTime.now())
                         .source(source)
                         .target(target)
                         .build());
     }
+
+    
 }

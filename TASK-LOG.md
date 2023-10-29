@@ -55,6 +55,10 @@ After creating the main classes and packages I started to implemnt the first par
 
 Had some issues with the testing framework. Wanted to use mockit but for some reason some of the annotations and mocking was not working.
 
-So, since we have a restricted timebox will implement all the features and get back to it with a little bit more time. 
+So, since we have a restricted timebox will implement all the features and get back to it with a little bit more time.
 
-1.4 
+1.4 - Main APIs done
+
+One thing I forgot to log before is that the authentication / authorization part is not included in this task right now.
+With more time I would implement a Spring Security and validate if the bank accounts belong to the owner. 
+

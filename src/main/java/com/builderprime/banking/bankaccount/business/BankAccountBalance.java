@@ -28,12 +28,6 @@ public class BankAccountBalance {
         return BankAccountBallanceDto.builder().balance(balance).build();
     }
 
-    private void checkExistingAmount(BigDecimal existingAmount, BigDecimal withdrawAmount){
-        if(existingAmount.compareTo(withdrawAmount) < 0){
-            throw new ValidationException("Insufficient credit");
-        }
-    }
-
     public void withdraw(BankAccount bankAccount, BigDecimal amount){
         var existingBalance = bankAccount.getBalance();
         checkExistingAmount(existingBalance, amount);
@@ -45,6 +39,12 @@ public class BankAccountBalance {
         var existingBalance = bankAccount.getBalance();
         var newAmount = existingBalance.add(amount);
         bankAccount.setBalance(newAmount);
+    }
+
+    private void checkExistingAmount(BigDecimal existingAmount, BigDecimal withdrawAmount){
+        if(existingAmount.compareTo(withdrawAmount) < 0){
+            throw new ValidationException("Insufficient credit");
+        }
     }
 
 }

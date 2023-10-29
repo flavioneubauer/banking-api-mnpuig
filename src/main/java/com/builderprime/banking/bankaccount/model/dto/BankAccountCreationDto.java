@@ -10,5 +10,6 @@ import lombok.Data;
 public class BankAccountCreationDto {
     
     private String customerId;
+    private String name;
     private BigDecimal depositAmount;
 }
