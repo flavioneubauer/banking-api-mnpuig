@@ -48,3 +48,13 @@ Transfer
             amount
 
 In this first step I will create it as a monolith cause we don't actually have any real numbers on the amount of requests, but this service can be scaled up vertically or horizontally if needed.
+
+1.3 Business and Controller setup
+
+After creating the main classes and packages I started to implemnt the first part: the bank account creation.
+
+Had some issues with the testing framework. Wanted to use mockit but for some reason some of the annotations and mocking was not working.
+
+So, since we have a restricted timebox will implement all the features and get back to it with a little bit more time. 
+
+1.4 
