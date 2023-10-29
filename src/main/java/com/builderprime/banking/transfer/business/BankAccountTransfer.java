@@ -24,19 +24,6 @@ public class BankAccountTransfer {
     private final BankAccountCheck bankAccountCheck;
     private final BankAccountBalance bankAccountBalance;
 
-    private void checkTransferAmount(BigDecimal transferAmount) {
-        BigDecimal minimumAmount = new BigDecimal(10);
-        if (transferAmount == null || transferAmount.compareTo(minimumAmount) < 0) {
-            throw new ValidationException("transfer amount must be greater than " + minimumAmount.intValue());
-        }
-    }
-
-    private void checkIfNotSameAccount(BankAccount source, BankAccount target) {
-        if (source.equals(target)) {
-            throw new ValidationException("Source and target accounts can't be the same");
-        }
-    }
-
     @Transactional
     public void transfer(BankAccountTransferDto bankAccountTransferDto) {
         var source = bankAccountCheck.getBankAccount(bankAccountTransferDto.getSource());
@@ -54,5 +41,16 @@ public class BankAccountTransfer {
                         .build());
     }
 
-    
+    private void checkTransferAmount(BigDecimal transferAmount) {
+        BigDecimal minimumAmount = new BigDecimal(10);
+        if (transferAmount == null || transferAmount.compareTo(minimumAmount) < 0) {
+            throw new ValidationException("transfer amount must be greater than " + minimumAmount.intValue());
+        }
+    }
+
+    private void checkIfNotSameAccount(BankAccount source, BankAccount target) {
+        if (source.equals(target)) {
+            throw new ValidationException("Source and target accounts can't be the same");
+        }
+    }
 }
