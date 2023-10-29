@@ -18,6 +18,7 @@ Also added a .gitignore to avoid commiting build files.
 
 In this first step I'm just mapping packages and dividing the features required by the task.
 
+```
 BankAccount
     controller
         BankAccountController
@@ -46,6 +47,8 @@ Transfer
             source
             target
             amount
+```
+
 
 In this first step I will create it as a monolith cause we don't actually have any real numbers on the amount of requests, but this service can be scaled up vertically or horizontally if needed.
 
@@ -60,5 +63,10 @@ So, since we have a restricted timebox will implement all the features and get b
 1.4 - Main APIs done
 
 One thing I forgot to log before is that the authentication / authorization part is not included in this task right now.
-With more time I would implement a Spring Security and validate if the bank accounts belong to the owner. 
+With more time I would implement a Spring Security and validate if the bank accounts belong to the owner.
 
+1.5 Ending the time
+
+Just to log that I tried to solve the issue with spring and mockito but it doesn't seem to work.
+
+In the beginnig of this task I thought about using a clean architecture to separate the business logic from the infraestructure, but for a small project I thought it would be too much and should be straight forward to mock repository layer.
