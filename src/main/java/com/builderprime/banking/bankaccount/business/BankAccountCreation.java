@@ -42,6 +42,7 @@ public class BankAccountCreation {
         checkDepositAmount(bankAccountCreationDto.getDepositAmount());
         var customer = getCustomer(bankAccountCreationDto.getCustomerId());
         bankAccountRepository.save(BankAccount.builder().balance(bankAccountCreationDto.getDepositAmount())
+                .name(bankAccountCreationDto.getName())
                 .owner(customer).build());
     }
 }
