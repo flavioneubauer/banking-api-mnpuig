@@ -99,8 +99,15 @@ Also, I thought InjectMocks annotation was supposed to be the same behavior as t
 
 So, after it worked and the comparative is: 
 
-@QuarkusTest = @ExtendWith(MockitoExtension.class)
-@InjectMock = @Mock
-@Inject     = @InjectMocks
+@QuarkusTest ~= @ExtendWith(MockitoExtension.class)
 
-With this, the mocking part just worked and I could finish my tests. 
+@InjectMock ~= @Mock
+
+@Inject     ~= @InjectMocks
+
+With this, the mocking part just worked and I could finish my tests.
+
+2. Final
+
+- docker compose up to get the db up
+- access http://localhost:8080/swagger-ui/index.html#/
