@@ -3,7 +3,6 @@ package com.builderprime.banking.bankaccount.business;
 import com.builderprime.banking.bankaccount.model.BankAccount;
 import com.builderprime.banking.bankaccount.model.repository.BankAccountRepository;
 import com.builderprime.banking.exception.NotFoundException;
-import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,8 +28,9 @@ import static org.mockito.Mockito.when;
 	}
 
 	@Test void testInvalidBankAccount() {
+		var bankAccountId = UUID.randomUUID().toString();
 		when(bankAccountRepository.findById(Mockito.any())).thenReturn(Optional.empty());
-		assertThrows(NotFoundException.class, () -> bankAccountCheck.getBankAccount(UUID.randomUUID().toString()));
+		assertThrows(NotFoundException.class, () -> bankAccountCheck.getBankAccount(bankAccountId));
 	}
 
 	@Test void testValidBankAccount() {

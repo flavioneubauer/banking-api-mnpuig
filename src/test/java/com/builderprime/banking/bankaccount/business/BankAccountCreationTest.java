@@ -4,7 +4,6 @@ import com.builderprime.banking.bankaccount.model.dto.BankAccountCreationDto;
 import com.builderprime.banking.bankaccount.model.repository.BankAccountRepository;
 import com.builderprime.banking.customer.business.CustomerService;
 import com.builderprime.banking.customer.model.Customer;
-import com.builderprime.banking.customer.model.repository.CustomerRepository;
 import com.builderprime.banking.exception.NotFoundException;
 import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
@@ -59,7 +59,7 @@ import static org.mockito.Mockito.when;
 
 	@Test void testSuccesfullBankAccountCreation() {
 		lenient().when(customerService.findById(customerId)).thenReturn(Optional.of(customer));
-		bankAccountCreation.create(bankAccount);
+		assertDoesNotThrow(() -> bankAccountCreation.create(bankAccount));
 	}
 
 }

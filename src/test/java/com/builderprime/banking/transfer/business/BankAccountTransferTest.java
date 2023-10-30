@@ -3,7 +3,6 @@ package com.builderprime.banking.transfer.business;
 import com.builderprime.banking.bankaccount.business.BankAccountBalance;
 import com.builderprime.banking.bankaccount.business.BankAccountCheck;
 import com.builderprime.banking.bankaccount.model.BankAccount;
-import com.builderprime.banking.bankaccount.model.repository.BankAccountRepository;
 import com.builderprime.banking.exception.NotFoundException;
 import com.builderprime.banking.transfer.model.dto.BankAccountTransferDto;
 import com.builderprime.banking.transfer.model.repository.TransferRepository;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.util.UUID;
