@@ -70,3 +70,37 @@ With more time I would implement a Spring Security and validate if the bank acco
 Just to log that I tried to solve the issue with spring and mockito but it doesn't seem to work.
 
 In the beginnig of this task I thought about using a clean architecture to separate the business logic from the infraestructure, but for a small project I thought it would be too much and should be straight forward to mock repository layer.
+
+1.6 After ending time
+
+So, I couldn't get over the fact that the tests were not working for me and started digging into it. 
+In the last couple of years I've been using Quarkus Framework and a tipical test class goes like this: 
+
+```java
+@QuarkusTest
+class ServiceTest {
+	
+	@InjectMock
+    SomeRepository someRepository;
+
+	@InjectMock
+	SomeOtherService someService;
+	
+	@Inject
+    Service service;
+}
+```
+
+Looking into some guides was a lot of types using version 2 of Spring ( I've chosen version 3 ). 
+After more digging and testing and found out what was the problem. 
+
+I was adding @SpringBootTest, as I thought it was like QuarkusTest. 
+Also, I thought InjectMocks annotation was supposed to be the same behavior as the InjectMock from Quarkus, but is the other way round.
+
+So, after it worked and the comparative is: 
+
+@QuarkusTest = @ExtendWith(MockitoExtension.class)
+@InjectMock = @Mock
+@Inject     = @InjectMocks
+
+With this, the mocking part just worked and I could finish my tests. 
