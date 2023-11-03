@@ -1,25 +1,12 @@
 package com.builderprime.banking.bankaccount.model;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
-
 import com.builderprime.banking.customer.model.Customer;
-import com.builderprime.banking.transfer.model.Transfer;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import lombok.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -40,6 +27,7 @@ public class BankAccount {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer owner;
 
+    @DecimalMin(value = "0.0", inclusive = false, message = "Balance should be greater than zero")
     @Column(nullable = false)
     private BigDecimal balance;
 }
