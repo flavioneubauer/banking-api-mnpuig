@@ -1,19 +1,14 @@
 package com.builderprime.banking.bankaccount.business;
 
-import java.math.BigDecimal;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.builderprime.banking.bankaccount.model.BankAccount;
 import com.builderprime.banking.bankaccount.model.dto.BankAccountCreationDto;
 import com.builderprime.banking.bankaccount.model.repository.BankAccountRepository;
 import com.builderprime.banking.customer.business.CustomerService;
 import com.builderprime.banking.customer.model.Customer;
 import com.builderprime.banking.exception.NotFoundException;
-
-import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

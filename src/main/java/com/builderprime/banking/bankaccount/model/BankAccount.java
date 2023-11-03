@@ -27,7 +27,7 @@ public class BankAccount {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer owner;
 
-    @DecimalMin(value = "0.0", inclusive = false)
+    @DecimalMin(value = "0.0", inclusive = false, message = "Balance should be greater than zero")
     @Column(nullable = false)
     private BigDecimal balance;
 }
