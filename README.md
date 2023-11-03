@@ -1,3 +1,48 @@
+# Home task solution
+
+## About the API project
+
+It's a Spring Boot 3 project using JDK 17. The dependencies are: 
+- spring-starter-web
+- spring-data-jpa
+- postgres driver
+- springdoc-openapi-starter-webmvc-ui ( swagger-ui )
+- lombok
+
+## How to spin-up for dev
+
+First you should have a posgtres database up and running. 
+There is a docker-compose.yaml that creates the postgres instance, and it's configured in application.properties.
+Next step is to run the project on any IDE using the main method on BankingApiApplication.
+
+After running, check http://localhost:8080/swagger-ui/index.html#/ and see swagger-ui.
+
+For creating the customers, run this script into the database: 
+
+```sql
+insert into customer values(gen_random_uuid(),'Arisha Barron');
+insert into customer values(gen_random_uuid(),'Branden Gibson');
+insert into customer values(gen_random_uuid(),'Rhonda Church');
+insert into customer values(gen_random_uuid(),'Georgina Hazel');
+```
+
+if using the provided docker compose, you can run this one line to create them all: 
+```bash
+docker exec -t -u postgres banking-api-db psql -d banking-mnpuig -c "insert into customer values(gen_random_uuid(),'Arisha Barron');insert into customer values(gen_random_uuid(),'Branden Gibson');insert into customer values(gen_random_uuid(),'Rhonda Church');insert into customer values(gen_random_uuid(),'Georgina Hazel');"
+```
+
+Also, a helpful query to check bank accounts and users
+```sql
+select b.id as account, b.name as accountName, c.id as customerId, c.name as customerName, b.balance from bank_account b join customer c on b.customer_id = c.id;
+```
+
+And using docker
+```bash
+docker exec -t -u postgres banking-api-db psql -d banking-mnpuig -c "select b.id as account, b.name as accountName, c.id as customerId, c.name as customerName, b.balance from bank_account b join customer c on b.customer_id = c.id" 
+```
+
+# Home task requirements
+
 ### Objective
 
 Your assignment is to build an internal API for a fake financial institution using Java and Spring.

@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BankAccountTransfer {
 
+    private static final BigDecimal MIN_TRANSFER_AMOUNT =  new BigDecimal(10);
+
     private final TransferRepository transferRepository;
     private final BankAccountCheck bankAccountCheck;
     private final BankAccountBalance bankAccountBalance;
@@ -42,9 +44,8 @@ public class BankAccountTransfer {
     }
 
     private void checkTransferAmount(BigDecimal transferAmount) {
-        BigDecimal minimumAmount = new BigDecimal(10);
-        if (transferAmount == null || transferAmount.compareTo(minimumAmount) < 0) {
-            throw new ValidationException("transfer amount must be greater than " + minimumAmount.intValue());
+        if (transferAmount == null || transferAmount.compareTo(MIN_TRANSFER_AMOUNT) < 0) {
+            throw new ValidationException("transfer amount must be greater than " + MIN_TRANSFER_AMOUNT.intValue());
         }
     }
 

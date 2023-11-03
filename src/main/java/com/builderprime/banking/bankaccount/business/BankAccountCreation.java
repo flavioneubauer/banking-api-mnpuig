@@ -22,13 +22,6 @@ public class BankAccountCreation {
     private final BankAccountRepository bankAccountRepository;
     private final CustomerService customerService;
 
-    private void checkDepositAmount(BigDecimal depositAmount) {
-        BigDecimal minimumAmount = new BigDecimal(1);
-        if (depositAmount == null || depositAmount.compareTo(minimumAmount) < 0) {
-            throw new ValidationException("deposit amount must be greater than 1");
-        }
-    }
-
     private Customer getCustomer(String customerId) {
         var optionalCustomer = customerService.findById(customerId);
         if (optionalCustomer.isEmpty()) {
@@ -39,7 +32,6 @@ public class BankAccountCreation {
 
     @Transactional
     public void create(BankAccountCreationDto bankAccountCreationDto) {
-        checkDepositAmount(bankAccountCreationDto.getDepositAmount());
         var customer = getCustomer(bankAccountCreationDto.getCustomerId());
         bankAccountRepository.save(BankAccount.builder().balance(bankAccountCreationDto.getDepositAmount())
                 .name(bankAccountCreationDto.getName())

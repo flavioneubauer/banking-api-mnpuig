@@ -15,6 +15,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,6 +43,7 @@ public class BankAccount {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer owner;
 
+    @DecimalMin(value = "0.0", inclusive = false)
     @Column(nullable = false)
     private BigDecimal balance;
 }
